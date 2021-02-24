@@ -14,12 +14,12 @@ html
           br
           .no-support.d-none
             .alert.alert-warning 
-              p Unfortunately, your web browser does not <a href="https://test.webrtc.org/">support WebRTC</a>
+              p Unfortunately, your web browser does not <a href="//test.webrtc.org/">support WebRTC</a>
           div 
             a.btn.btn-primary.btn-lg(onclick="CreateRoom()") Start
             | &nbsp;
             a.btn.btn-default.btn-lg(onclick="JoinRoom()") Join
-    section#chat 
+    section#chat-room.d-none
 
     block scripts 
       script(src="//code.jquery.com/jquery-3.2.1.slim.min.js")
