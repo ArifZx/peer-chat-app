@@ -1,0 +1,30 @@
+html
+  head(lang="en")
+    title Peer Chat App
+    meta(name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no")
+
+    block styles 
+      link(rel="stylesheet", href="//stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css")
+      link(rel="stylesheet", href="/assets/css/style.css")
+  body
+    section#menu
+      div
+        div
+          h1 Peer Chat App
+          br
+          .no-support.d-none
+            .alert.alert-warning 
+              p Unfortunately, your web browser does not <a href="https://test.webrtc.org/">support WebRTC</a>
+          div 
+            a.btn.btn-primary.btn-lg(onclick="CreateRoom()") Start
+            | &nbsp;
+            a.btn.btn-default.btn-lg(onclick="JoinRoom()") Join
+    section#chat 
+
+    block scripts 
+      script(src="//code.jquery.com/jquery-3.2.1.slim.min.js")
+      script(src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js")
+      script(src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js")
+      script(src="//unpkg.com/peerjs@1.3.1/dist/peerjs.min.js")
+      script(src="/assets/chat.js")
+
