@@ -161,18 +161,18 @@ body {
   background-color: #82ccdd;
   padding: 10px;
   position: relative;
-  min-width: 60px;
+  min-width: 64px;
 }
 
 .msg-cotainer-send{
   margin-top: auto;
-  min-width: 60px;
   margin-bottom: auto;
   margin-right: 10px;
   border-radius: 25px;
   background-color: #78e08f;
   padding: 10px;
   position: relative;
+  min-width: 64px;
 }
 
 .msg-time{
