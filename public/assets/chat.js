@@ -103,17 +103,100 @@ function showDisplay(id, value = true) {
 }
 
 function setChatRoomID(id) {
-  document.getElementById("room-info").innerHTML = `Room: ${id}`
+  document.getElementById("room-info").innerHTML = `${id}`
 }
 
 
-function createChat(text, sender = true) {
-  const now = Date.now()
-  const id = `chat-${now}-${peerId}`
-  const elemen = document.createElement("div")
-  elemen.classList.add("d-flex")
-  elemen.classList.add("mb-4")
-  elemen.classList.add(`justify-content-${sender? "end" : "start"}`)
-  elemen.id = id;
+function createChat(text, sender = true, _peerId = peerId, now = Date.now()) {
+  const id = `chat-${now}-${_peerId}`
+  const message = document.createElement("div")
+  message.classList.add("d-flex")
+  message.classList.add(`justify-content-${sender? "end" : "start"}`)
+  message.classList.add("mb-4")
+  message.id = id;
+
+  if(!sender) {
+    const divImg = document.createElement("div")
+    divImg.classList.add("img-cont-msg")
+    const img = document.createElement("img")
+    img.classList.add("rounded-circle")
+    img.classList.add("user-img-msg")
+    img.src = "//static.turbosquid.com/Preview/001292/481/WV/_D.jpg"
+    divImg.appendChild(img)
+    
+    message.appendChild(divImg)
+  }
+
+  const container = document.createElement("div")
+  container.innerHTML = text
+  container.classList.add(`msg-cotainer${sender? "-send" : ""}`)
+  const span = document.createElement("span")
+  const date = new Date(now)
+  const hours = date.getHours()
+  const minutes = date.getMinutes()
+  const day = date.getDay()
+  const weekday = new Array(7);
+      weekday[0]="Monday";
+      weekday[1]="Tuesday";
+      weekday[2]="Wednesday";
+      weekday[3]="Thursday";
+      weekday[4]="Friday";
+      weekday[5]="Saturday";
+      weekday[6]="Sunday";
+  const today = new Date().getDay() === day ? "Today" : weekday[day]
+
   
+  span.textContent = `${hours < 10 ? "0":""}${hours}:${minutes < 10 ? "0":""}${minutes}, ${today}`
+  span.classList.add("msg-time")
+  container.appendChild(span)
+
+  message.appendChild(container)
+  document.getElementById("msg-box")?.appendChild(message)
 }
+
+function dynamicChatRoom() {
+  const chatRoom = document.getElementById("chat-card")
+  chatRoom.style.height = `${window.innerHeight}px`
+}
+dynamicChatRoom()
+
+function ShareRoom(){
+  let cp = document.getElementById("copy");
+  if(!cp) {
+    const target = document.createElement("textarea")
+    target.id = "copy"
+    target.style.position = "absolute";
+    target.style.left = "-9999px";
+    target.style.top = "0"
+    document.body.appendChild(target)
+    cp = target;
+  }
+  
+  cp.value = peerId;
+  cp.focus();
+  cp.setSelectionRange(0, cp.value.length)
+
+  try {
+    document.execCommand("copy")
+    alert("Copied: " + cp.value)
+  } catch (error) {
+    
+  }
+}
+
+function OnSendMessage(){
+  const ele = document.getElementById("msg-text")
+  let msg = ele?.value || ""
+
+  if(!msg) {
+    return;
+  }
+  msg = msg.replace(/\n\r?/g, "<br />")
+
+  createChat(msg, false, peerId);
+  ele.value = ""
+}
+
+window.addEventListener("resize", (ev) => {
+  dynamicChatRoom()
+})

@@ -24,37 +24,23 @@ html
     section#chat-room.d-none
       div 
         div.chat
-          .card 
+          .card#chat-card
             .card-header.msg-head 
-              .d-flex.bd-highlight
+              .d-flex.bd-highlight.justify-content-between
                 .user-info 
+                  span Room: &nbsp;
                   span#room-info
+                a.btn.user-info.fas.fa-share-alt(onclick="ShareRoom()")
             .card-body.msg-card-body#msg-box
-              .d-flex.justify-content-start.mb-4 
-                .img-cont-msg
-                  img.rounded-circle.user-img-msg(src="//static.turbosquid.com/Preview/001292/481/WV/_D.jpg", alt="")
-                .msg-cotainer Hi, how are you?
-                  | asdasd 
-                  | asdsad
-                  span.msg-time 8:40 AM, Today
-              .d-flex.justify-content-end.mb-4 
-                .msg-cotainer-send 
-                  | Hi Khalid how are you 
-                  span.msg-time 8:40 AM, Today
             .card-footer
               .input-group 
                 .input-group-append 
                   span.input-group-text.attach-btn 
                     i.fas.fa-paperclip 
-                textarea.form-control.type-msg(name="", placeholder="Type your message...")
+                textarea.form-control.type-msg#msg-text(name="", placeholder="Type your message...")
                 .input-group-append
                   span.input-group-text.send-btn 
-                    i.fas.fa-location-arrow
-              
-
-
-
-
+                    a.fas.fa-location-arrow(onclick="OnSendMessage()")
 
     block scripts 
       script(src="//code.jquery.com/jquery-3.2.1.slim.min.js")
