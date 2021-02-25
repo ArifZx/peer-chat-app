@@ -1,4 +1,4 @@
-const Peer = require("peerjs")
+// import Peer from "peerjs"
 let peerId = ""
 let conn = null
 const other = {
@@ -44,8 +44,10 @@ function CreateRoom() {
       return
     }
     conn = c
-    BeginChat()
   })
+
+  setChatRoomID(peerId);
+  BeginChat()
 }
 
 function JoinRoom() {
@@ -65,6 +67,7 @@ function JoinRoom() {
   dataConnection.on("open", () => {
     alert
     other.peerId = destId
+    setChatRoomID(destId)
     BeginChat()
   })
 
@@ -97,4 +100,20 @@ function showDisplay(id, value = true) {
   } else if (!classList.contains("d-none")) {
     classList.add("d-none")
   }
+}
+
+function setChatRoomID(id) {
+  document.getElementById("room-info").innerHTML = `Room: ${id}`
+}
+
+
+function createChat(text, sender = true) {
+  const now = Date.now()
+  const id = `chat-${now}-${peerId}`
+  const elemen = document.createElement("div")
+  elemen.classList.add("d-flex")
+  elemen.classList.add("mb-4")
+  elemen.classList.add(`justify-content-${sender? "end" : "start"}`)
+  elemen.id = id;
+  
 }

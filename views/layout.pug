@@ -5,6 +5,8 @@ html
 
     block styles 
       link(rel="stylesheet", href="//stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css")
+      link(rel="stylesheet", href="//use.fontawesome.com/releases/v5.5.0/css/all.css")
+      link(rel="stylesheet", href="//cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css")
       link(rel="stylesheet", href="/assets/css/style.css")
   body
     section#menu
@@ -20,11 +22,45 @@ html
             | &nbsp;
             a.btn.btn-default.btn-lg(onclick="JoinRoom()") Join
     section#chat-room.d-none
+      div 
+        div.chat
+          .card 
+            .card-header.msg-head 
+              .d-flex.bd-highlight
+                .user-info 
+                  span#room-info
+            .card-body.msg-card-body#msg-box
+              .d-flex.justify-content-start.mb-4 
+                .img-cont-msg
+                  img.rounded-circle.user-img-msg(src="//static.turbosquid.com/Preview/001292/481/WV/_D.jpg", alt="")
+                .msg-cotainer Hi, how are you?
+                  | asdasd 
+                  | asdsad
+                  span.msg-time 8:40 AM, Today
+              .d-flex.justify-content-end.mb-4 
+                .msg-cotainer-send 
+                  | Hi Khalid how are you 
+                  span.msg-time 8:40 AM, Today
+            .card-footer
+              .input-group 
+                .input-group-append 
+                  span.input-group-text.attach-btn 
+                    i.fas.fa-paperclip 
+                textarea.form-control.type-msg(name="", placeholder="Type your message...")
+                .input-group-append
+                  span.input-group-text.send-btn 
+                    i.fas.fa-location-arrow
+              
+
+
+
+
 
     block scripts 
       script(src="//code.jquery.com/jquery-3.2.1.slim.min.js")
       script(src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js")
       script(src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js")
+      script(src="//cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.js") 
       script(src="//unpkg.com/peerjs@1.3.1/dist/peerjs.min.js")
       script(src="/assets/chat.js")
 
