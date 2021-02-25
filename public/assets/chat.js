@@ -167,6 +167,8 @@ function createChat(text, sender = true, _peerId = peerId, now = Date.now()) {
 
   message.appendChild(container)
   document.getElementById("msg-box")?.appendChild(message)
+
+  return message
 }
 
 function dynamicChatRoom() {
@@ -208,8 +210,9 @@ function OnSendMessage(){
   }
   msg = msg.replace(/\n\r?/g, "<br />")
 
-  createChat(msg, true, peerId);
+  const chat = createChat(msg, true, peerId);
   SendMessageToOther(msg)
+  chat.scrollIntoView()
   ele.value = ""
 }
 

@@ -48,7 +48,7 @@ body {
 }
 
 .msg-card-body {
-  overflow-y: hidden;
+  overflow-y: scroll;
 }
 
 .card-header {
