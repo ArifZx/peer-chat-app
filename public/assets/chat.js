@@ -31,6 +31,14 @@ function ping() {
 ping()
 // #endregion of initialize
 
+function inputMsg(){
+  return document.getElementById("input-msg")
+}
+
+function inputAlert(){
+  return document.getElementById("input-alert")
+}
+
 function CreateRoom() {
   console.log("Creating room")
 
@@ -38,12 +46,17 @@ function CreateRoom() {
     return
   }
 
+  inputMsg()?.classList.add("d-none")
+
   peer.on("connection", (c) => {
     if (conn) {
       c.close()
       return
     }
+    inputAlert()?.remove()
+    inputMsg()?.classList.remove("d-none")
     conn = c
+    ReceiveMessage()
   })
 
   setChatRoomID(peerId);
@@ -60,6 +73,7 @@ function JoinRoom() {
   const destId = prompt("Room ID:")
   if (!destId) return
 
+  inputAlert()?.remove()
   console.log("Trying connect to", destId)
   const dataConnection = peer.connect(destId, {
     reliable: true,
@@ -72,6 +86,7 @@ function JoinRoom() {
   })
 
   conn = dataConnection
+  ReceiveMessage()
 }
 
 function BeginChat() {
@@ -188,13 +203,28 @@ function OnSendMessage(){
   const ele = document.getElementById("msg-text")
   let msg = ele?.value || ""
 
-  if(!msg) {
+  if(!msg || !conn) {
     return;
   }
   msg = msg.replace(/\n\r?/g, "<br />")
 
-  createChat(msg, false, peerId);
+  createChat(msg, true, peerId);
+  SendMessageToOther(msg)
   ele.value = ""
+}
+
+function SendMessageToOther(message) {
+  if(!conn) {
+    return;
+  }
+  conn.send([encodeURI(message), Date.now()])
+}
+
+function ReceiveMessage(){
+  conn.on("data", (ev) =>{
+    console.log(ev)
+    createChat(decodeURI(ev[0]), false, other.peerId, ev[1])
+  })
 }
 
 window.addEventListener("resize", (ev) => {

@@ -2,6 +2,7 @@ html
   head(lang="en")
     title Peer Chat App
     meta(name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no")
+    meta(charset='utf-8')
 
     block styles 
       link(rel="stylesheet", href="//stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css")
@@ -33,7 +34,10 @@ html
                 a.btn.user-info.fas.fa-share-alt(onclick="ShareRoom()")
             .card-body.msg-card-body#msg-box
             .card-footer
-              .input-group 
+              .alert.alert-warning.d-flex.justify-content-center.align-items-center#input-alert
+                p#wait-alert Wait other to join or share your room ID 
+                a.btn.fas.fa-share-alt(onclick="ShareRoom()")
+              .input-group#input-msg
                 .input-group-append 
                   span.input-group-text.attach-btn 
                     i.fas.fa-paperclip 
