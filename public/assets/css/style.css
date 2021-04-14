@@ -111,6 +111,18 @@ body {
   border:1.5px solid #f5f6fa;
 }
 
+.msg-image{
+  max-width: 600px;
+  max-height: 200px;
+  border-radius: 15px;
+}
+
+.msg-video{
+  max-width: 600px;
+  max-height: 200px;
+  border-radius: 15px;
+}
+
 .img-cont{
   position: relative;
   height: 70px;
